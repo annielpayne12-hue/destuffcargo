@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ── Private app: block all crawlers and indexing ── -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noodp" />
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet" />
+
+    <!-- ── Prevent embedding in iframes (clickjacking / public embeds) ── -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+
+    <!-- ── Content Security Policy ── -->
+    <!-- default-src 'self'     = only load resources from own origin      -->
+    <!-- connect-src includes Supabase API + WSS for Realtime             -->
+    <!-- Note: frame-ancestors is omitted — it has no effect in a <meta>  -->
+    <!--       tag (spec §4.2.5); X-Frame-Options: DENY above handles it. -->
+    <meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self' https://miaoda-op-sourcecode.s3.us-west-2.amazonaws.com;
+        script-src  'self' 'unsafe-inline' 'unsafe-eval'
+                    https://miaoda-op-sourcecode.s3.us-west-2.amazonaws.com
+                    https://miaoda-resource-static.s3cdn.medo.dev;
+        style-src   'self' 'unsafe-inline'
+                    https://miaoda-op-sourcecode.s3.us-west-2.amazonaws.com
+                    https://miaoda-font.cdn.bcebos.com;
+        img-src     'self' data: blob: https:;
+        font-src    'self' data: https:
+                    https://miaoda-op-sourcecode.s3.us-west-2.amazonaws.com
+                    https://miaoda-font.cdn.bcebos.com;
+        connect-src 'self'
+                    https://*.supabase.co
+                    wss://*.supabase.co
+                    https://eklviimiijdvfyalsyre.supabase.co
+                    wss://eklviimiijdvfyalsyre.supabase.co
+                    https://miaoda-op-sourcecode.s3.us-west-2.amazonaws.com;
+        object-src  'none';
+        base-uri    'self';
+        form-action 'self';
+      " />
+
+    <!-- ── Prevent MIME-type sniffing ── -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+    <!-- ── Never send Referer header to external sites ── -->
+    <meta http-equiv="Referrer-Policy" content="no-referrer" />
+
+    <!-- ── Strict-Transport-Security (HSTS) ── -->
+    <!-- Tells browsers to always use HTTPS for this domain for 1 year -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
+
+    <!-- ── Disable browser features not needed by this app ── -->
+    <meta http-equiv="Permissions-Policy"
+      content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=()" />
+    <title>Cargo Container Destuffing System</title>
+  </head>
+  <body>
+    <noscript>
+      <div style="padding:40px;text-align:center;font-family:sans-serif;">
+        <h2>JavaScript Required</h2>
+        <p>This application requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
+      </div>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

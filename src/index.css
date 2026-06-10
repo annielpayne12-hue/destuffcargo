@@ -1,0 +1,81 @@
+/* stylelint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 14px; /* scale down from Chrome's 16px default so all rem-based sizes are tighter */
+  }
+  :root {
+    --radius: 0;
+    --background: 220 20% 97%;
+    --foreground: 220 14% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 14% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14% 11%;
+    --primary: 15 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 196 35% 42%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 8% 40%;
+    --accent: 220 14% 92%;
+    --accent-foreground: 220 14% 11%;
+    --destructive: 6 78% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 12% 84%;
+    --input: 220 12% 84%;
+    --ring: 15 100% 55%;
+    --chart-1: 15 100% 55%;
+    --chart-2: 196 35% 42%;
+    --chart-3: 145 63% 40%;
+    --chart-4: 43 74% 52%;
+    --chart-5: 27 87% 57%;
+    --sidebar-background: 220 16% 94%;
+    --sidebar-foreground: 220 14% 11%;
+    --sidebar-primary: 15 100% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 88%;
+    --sidebar-accent-foreground: 220 14% 11%;
+    --sidebar-border: 220 12% 84%;
+    --sidebar-ring: 15 100% 55%;
+  }
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  .status-badge {
+    @apply inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium h-6;
+  }
+  .status-badge[data-status="Scheduled"] {
+    @apply bg-[#3498db]/20 text-[#3498db];
+  }
+  .status-badge[data-status="In Process"] {
+    @apply bg-[#ff6b35]/20 text-[#ff6b35];
+  }
+  .status-badge[data-status="Completed"] {
+    @apply bg-[#2ecc71]/20 text-[#2ecc71];
+  }
+}
